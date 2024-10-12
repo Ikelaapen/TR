@@ -1,108 +1,127 @@
 /* Awal CSS Navbar */
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 10px 20px;
-    border-bottom: 1px solid gray;
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-  
-  nav h1 a {
-    text-decoration: none;
-    margin: 0;
-    font-size: 24px;
-    font-weight: 600;
-    color: #6c757d;
-    transition: color 0.3s ease;
-  }
-  
-  nav h1 a:hover {
-    color: #32de8a;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    margin-right: 20px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #6c757d;
-    font-size: 18px;
-    font-weight: 400;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #32de8a;
-  }
-  
-  nav ul li a.active {
-    color: #32de8a;
-    border-bottom: 2px solid #32DE8A;
-  }
-  /* Akhir CSS Navbar */
-  
-  /* Awal CSS Body */
-  /* Awal CSS Jumbotron Judul */
-  .jumbotron {
-    padding-top: 15rem;
-    background-color: #43c3ff;
-    border-image: fill 0 linear-gradient(#0001, #000);
-    color: white;
-    text-align: center;
-    width: 100%;
-    background-size: 100%;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .col-sm {
-    color: #32de8a;
-  }
-  
-  .jumbotron1 {
-    background-color: #c1c1c1;
-  }
-  
-  /* Bagian Search */
-  nav .box {
-    background-color: #fff;
-    border-radius: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  nav input[type='text'] {
-    padding: 10px 15px;
-    border: none;
-    font-size: 16px;
-    width: 200px;
-    border-radius: 25px 0 0 25px;
-  }
-  
-  nav button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px 15px;
-    color: #333;
-    border-radius: 0 25px 25px 0;
-  }
-  
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding-top: 70px; /* Ensure content isn't hidden behind navbar */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid gray;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures the navbar is always on top */
+}
+
+nav h1 a {
+  text-decoration: none;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+nav h1 a:hover {
+  color: #32de8a;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #6c757d;
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #32de8a;
+}
+
+nav ul li a.active {
+  color: #32de8a;
+  border-bottom: 2px solid #32DE8A;
+}
+
+/* Akhir CSS Navbar */
+
+/* Awal CSS Body */
+/* Jumbotron Section */
+.jumbotron {
+  padding-top: 15rem;
+  background-color: #43c3ff;
+  color: white;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.col-sm {
+  color: #32de8a;
+}
+
+.jumbotron1 {
+  background-color: #c1c1c1;
+}
+
+/* Search Box in Navbar */
+nav .box {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav input[type='text'] {
+  padding: 10px 15px;
+  border: none;
+  font-size: 16px;
+  width: 200px;
+  border-radius: 25px 0 0 25px;
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  color: #333;
+  border-radius: 0 25px 25px 0;
+}
+
+/* Main Content Section */
+#deskripsi {
+  margin-top: 50px;
+  padding: 20px;
+}
+
+#deskripsi .col-md-5 {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+#deskripsi p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}

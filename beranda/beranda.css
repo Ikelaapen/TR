@@ -118,14 +118,14 @@ nav button {
 
 /* Main Content Section */
 #deskripsi {
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 20px;
 }
 
 #deskripsi .col-md-5 {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   text-align: justify;
 }
 
@@ -133,4 +133,12 @@ nav button {
   font-size: 18px;
   line-height: 1.8;
   margin-bottom: 20px;
+}
+
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }

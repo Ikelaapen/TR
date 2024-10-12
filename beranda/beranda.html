@@ -86,47 +86,51 @@
     </section>
     <!-- Akhir Deskripsi -->
 
-    <!-- Awal Card -->
-    <section id="suasanapohon">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <div class="card">
-                        <img src="data kamar.jpeg" class="card-img-top" alt="data kamar" />
-                        <div class="card-body">
-                            <p class="card-text">Menampilkan no.kamar, nama penghuni, lantai kamar, kapasitas, fasilitas, tarif dari tiap kamar yang ada</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card">
-                        <img src="penghuni.jpeg" class="card-img-top" alt="penghuni" />
-                        <div class="card-body">
-                            <p class="card-text">Menampilkan data penghuni berupa nama, alamat, no.hp, dan jika ada penghuni baru maka bisa menambahkan data penghuni baru tersebut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card">
-                        <img src="tagihan.jpeg" class="card-img-top" alt="tagihan" />
-                        <div class="card-body">
-                            <p class="card-text">Penghuni akan diminta ingin melihat tagihan pada bulan dan tahun kemudian sistem akan menampilkan data penghuni seperti nama, tagihan, status pembayaran, aksi.
-                                Pengelola juga bisa menambahkan data tagihan bagi penghuni yang belum membayar atau sudah waktunya untuk membayar uang kost.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card">
-                        <img src="lunas.jpeg" class="card-img-top" alt="lunas" />
-                        <div class="card-body">
-                            <p class="card-text">Menampilkan data penghuni ketika selesai membayar uang kost dan status pembayaran berhasil atau tidak.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Akhir Card -->
+ <!-- Awal Card -->
+<section id="suasanapohon">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3 mb-3">
+              <div class="card" onclick="toggleDescription(this)">
+                  <img src="data kamar.jpeg" class="card-img-top" alt="data kamar" />
+                  <div class="card-body">
+                      <h3 class="card-text">Data Kamar</h3>
+                      <p class="card-description" style="display: none;">Menampilkan no.kamar, nama penghuni, lantai kamar, kapasitas, fasilitas, tarif dari tiap kamar yang ada</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 mb-3">
+              <div class="card" onclick="toggleDescription(this)">
+                  <img src="penghuni.jpeg" class="card-img-top" alt="penghuni" />
+                  <div class="card-body">
+                      <h3 class="card-text">Data Penghuni</h3>
+                      <p class="card-description" style="display: none;">Menampilkan data penghuni berupa nama, alamat, no.hp, dan jika ada penghuni baru maka bisa menambahkan data penghuni baru tersebut.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 mb-3">
+              <div class="card" onclick="toggleDescription(this)">
+                  <img src="tagihan.jpeg" class="card-img-top" alt="tagihan" />
+                  <div class="card-body">
+                      <h3 class="card-text">Data Tagihan</h3>
+                      <p class="card-description" style="display: none;">Penghuni akan diminta ingin melihat tagihan pada bulan dan tahun kemudian sistem akan menampilkan data penghuni seperti nama, tagihan, status pembayaran, aksi. Pengelola juga bisa menambahkan data tagihan bagi penghuni yang belum membayar atau sudah waktunya untuk membayar uang kost.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 mb-3">
+              <div class="card" onclick="toggleDescription(this)">
+                  <img src="lunas.jpeg" class="card-img-top" alt="lunas" />
+                  <div class="card-body">
+                      <h3 class="card-text">Pembayaran Lunas</h3>
+                      <p class="card-description" style="display: none;">Menampilkan data penghuni ketika selesai membayar uang kost dan status pembayaran berhasil atau tidak.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Akhir Card -->
+
 
     <!-- Awal Footer -->
     <footer class="bg-success p-2 text-white text-center text-lg-start">
@@ -139,5 +143,17 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
+<script>
+  function toggleDescription(card) {
+      const description = card.querySelector('.card-description');
+      if (description.style.display === 'none' || description.style.display === '') {
+          description.style.display = 'block'; // Menampilkan deskripsi
+      } else {
+          description.style.display = 'none'; // Menyembunyikan deskripsi
+      }
+  }
+  </script>
+  
 
 </html>

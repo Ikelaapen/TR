@@ -22,10 +22,17 @@
 <body>
     <!-- Navigasi -->
     <nav>
-        <h1><a href="beranda.php"><span>Kos Kit</span></a></h1>
+      <div class="nav-left">
+        <h1>
+          <a href="">
+        <img src="Kostkit.png" alt="Logo" class="logo" />
+        <span>Kos Kit</span>
+        </a>
+        </h1>
+      </div>
 
         <!-- Kotak Pencarian -->
-        <div class="box">
+        <div class="nav-center box">
             <form id="formPencarian">
                 <input type="text" id="kataKunci" placeholder="Search...">
                 <button type="submit"><i class="fas fa-search"></i></button>
@@ -33,6 +40,7 @@
         </div>
 
         <!-- Menu Navigasi -->
+         <div class="nav-right">
         <ul id="menu">
             <li class="active"><a href="#">Beranda</a></li>
             <li><a href="#">Data Kamar</a></li>
@@ -41,6 +49,7 @@
             <li><a href="#">Pembayaran Lunas</a></li>
         </ul>
     </nav>
+  </div>
 
     <!-- Awal Jumbotron -->
     <section class="jumbotron jumbotron-fluid">
@@ -83,7 +92,7 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <div class="card">
-                        <img src="kamar.jpeg" class="card-img-top" alt="data kamar" />
+                        <img src="data kamar.jpeg" class="card-img-top" alt="data kamar" />
                         <div class="card-body">
                             <p class="card-text">Menampilkan no.kamar, nama penghuni, lantai kamar, kapasitas, fasilitas, tarif dari tiap kamar yang ada</p>
                         </div>
@@ -91,7 +100,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="card">
-                        <img src="orang.png" class="card-img-top" alt="penghuni" />
+                        <img src="penghuni.jpeg" class="card-img-top" alt="penghuni" />
                         <div class="card-body">
                             <p class="card-text">Menampilkan data penghuni berupa nama, alamat, no.hp, dan jika ada penghuni baru maka bisa menambahkan data penghuni baru tersebut.</p>
                         </div>

@@ -17,77 +17,35 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Ensures the navbar is always on top */
+  z-index: 1000;
 }
 
-nav h1 a {
-  text-decoration: none;
-  margin: 0;
+/*kiri : logo dan koskit */
+.nav-left{
+  display: flex;
+  align-items: center;
+}
+.nav-left h1 a{
+  text-decoration:none;
+  color: #3CB371;
   font-size: 24px;
   font-weight: 600;
-  color: #6c757d;
-  transition: color 0.3s ease;
-}
-
-nav h1 a:hover {
-  color: #32de8a;
-}
-
-nav ul {
-  list-style: none;
   display: flex;
-  margin: 0;
-  padding: 0;
+  align-items: center;
 }
 
-nav ul li {
-  margin-right: 20px;
+.logo{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-nav ul li a {
-  text-decoration: none;
-  color: #6c757d;
-  font-size: 18px;
-  font-weight: 400;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #32de8a;
-}
-
-nav ul li a.active {
-  color: #32de8a;
-  border-bottom: 2px solid #32DE8A;
-}
-
-/* Akhir CSS Navbar */
-
-/* Awal CSS Body */
-/* Jumbotron Section */
-.jumbotron {
-  padding-top: 15rem;
-  background-color: #43c3ff;
-  color: white;
-  text-align: center;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-.col-sm {
-  color: #32de8a;
-}
-
-.jumbotron1 {
-  background-color: #c1c1c1;
-}
-
-/* Search Box in Navbar */
-nav .box {
-  background-color: #fff;
-  border-radius: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* kotak pencarian */
+.nav-center{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 
 nav input[type='text'] {
@@ -105,6 +63,57 @@ nav button {
   padding: 10px 15px;
   color: #333;
   border-radius: 0 25px 25px 0;
+}
+
+/* menu navigasi */
+.nav-right ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-right ul li {
+  margin-left: 20px;
+}
+
+.nav-right ul li a {
+  text-decoration: none;
+  color: #6c757d;
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-right ul li a:hover {
+  color: #32de8a;
+}
+
+.nav-right ul li a.active {
+  color: #32de8a;
+  border-bottom: 2px solid #32de8a;
+}
+
+/* Akhir CSS Navbar */
+
+/* Awal CSS Body */
+/* Jumbotron Section */
+.jumbotron {
+  padding-top: 15rem;
+  background-color: #3CB371;
+  color: white;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.col-sm {
+  color: #32de8a;
+}
+
+.jumbotron1 {
+  background-color: #c1c1c1;
 }
 
 /* Main Content Section */

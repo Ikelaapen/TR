@@ -1,0 +1,240 @@
+/* Awal CSS Navbar */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  nav h1 a {
+    text-decoration: none;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #6c757d;
+    transition: color 0.3s ease;
+  }
+  
+  nav h1 a:hover {
+    color: #32de8a;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: #32de8a;
+  }
+  
+  nav ul li a.active {
+    color: #32de8a;
+    border-bottom: 2px solid #32DE8A;
+  }
+  /* Akhir CSS Navbar */
+  
+  /* Awal CSS Body */
+  /* Awal CSS Jumbotron Judul */
+  .jumbotron {
+    padding-top: 15rem;
+    background-color: #43c3ff;
+    border-image: fill 0 linear-gradient(#0001, #000);
+    color: white;
+    text-align: center;
+    width: 100%;
+    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('judul.jpg');
+  }
+  
+  .col-sm {
+    color: #32de8a;
+  }
+  
+  .jumbotron1 {
+    background-color: #c1c1c1;
+  }
+  
+  /* Awal CSS Suasana*/
+  .suasana {
+    padding-top: 5%;
+    margin: 0;
+  }
+  
+  .background {
+    background-image: url('yangdirasakan.jpg');
+    /* Ganti dengan path ke foto Anda */
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .overlay-suasana {
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 53, 0.7), rgba(0, 0, 0, 0.7));
+    padding: 20px;
+  }
+  
+  .content {
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    color: white;
+    font-size: 30px;
+  }
+  
+  .rating-box {
+    size: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 100px; /*buat ngubah ukuran gambar di "yang dirasakan" dan ngubah jarak dari judul sama kotak berisi bintang*/
+    flex-wrap: wrap;
+  }
+  
+  .rating {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .rating::after {
+    content: '★★★★★';
+    color: yellow;
+  }
+  
+  .judul-kualitas {
+    font-size: 60px;
+  }
+  
+  .formulir {
+    color: #6c757d;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 25px;
+  }
+  
+  .judul-formulir {
+    color: #32de8a;
+    text-align: center;
+    font-size: 40px;
+  }
+  
+  hr {
+    width: 50%;
+    margin: auto;
+  }
+  /* Akhir CSS Body */
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+  }
+  
+  nav h1 a {
+    text-decoration: none;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #6c757d;
+    transition: color 0.3s ease;
+  }
+  
+  nav h1 a:hover {
+    color: #32de8a;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: #32de8a;
+  }
+  
+  nav ul li a.active {
+    color: #32de8a;
+    border-bottom: 2px solid #32de8a;
+  }
+  
+  /* Bagian Search */
+  nav .box {
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav input[type='text'] {
+    padding: 10px 15px;
+    border: none;
+    font-size: 16px;
+    width: 200px;
+    border-radius: 25px 0 0 25px;
+  }
+  
+  nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: #333;
+    border-radius: 0 25px 25px 0;
+  }
+  

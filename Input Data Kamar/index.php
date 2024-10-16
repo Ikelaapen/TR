@@ -129,6 +129,37 @@ if (isset($_POST['simpan'])) {
 </head>
 
 <body>
+      <!-- Navigasi -->
+      <nav>
+      <div class="nav-left">
+        <h1>
+          <a href="">
+        <img src="profil.jpg" alt="Profil" class="profil" />
+        <span>Kos Kit</span>
+        </a>
+        </h1>
+      </div>
+
+        <!-- Kotak Pencarian -->
+        <div class="nav-center box">
+            <form id="formPencarian">
+                <input type="text" id="kataKunci" placeholder="Search...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Menu Navigasi -->
+         <div class="nav-right">
+        <ul id="menu">
+            <li class="active"><a href="#">Beranda</a></li>
+            <li><a href="#">Data Kamar</a></li>
+            <li><a href="#">Data Penghuni</a></li>
+            <li><a href="#">Data Tagihan</a></li>
+            <li><a href="#">Pembayaran Lunas</a></li>
+        </ul>
+    </nav>
+  </div>
+  
   <div class="container mx-auto">
     <div class="card">
       <div class="card-header">Create / Edit Data Kamar</div>

@@ -133,62 +133,76 @@ if (isset($_POST['simpan'])) {
     <div class="card">
       <div class="card-header">Create / Edit Data Kamar</div>
       <div class="card-body">
-        <?php
-        if ($error) {
-        ?>
-          <div class="alert alert-danger" role="alert">
-            <?php echo $error ?>
-          </div>  
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahKamar">
+          Tambah Kamar
+        </button>
 
-        <?php
-          header("refresh:5;url=index.php");
-        }
-        ?>
-        <?php
-        if ($sukses) {
-        ?>
-          <div class="alert alert-success" role="alert">
-            <?php echo $sukses ?>
-          </div>
-        <?php
-          header("refresh:5;url=index.php");
-        }
-        ?>
-        <form action="" method="POST">
-          <div class="mb-3 row">
-            <label for="no_kamar"  class="col-sm-2 col-form-label">no_kamar</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="no_kamar" name="no_kamar" value="<?php echo $no_kamar ?>">
+        <div class="modal fade" id="modalTambahKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kamar Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST">
+                  <?php
+                  if ($error) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?php echo $error ?>
+                    </div>
+
+                  <?php
+                  header("refresh:5;url=index.php");
+                  }
+                  ?>
+                  <?php
+                  if ($sukses) {
+                  ?>
+                    <div class="alert alert-success" role="alert">
+                      <?php echo $sukses ?>
+                    </div>
+                  <?php
+                  header("refresh:5;url=index.php");
+                  }
+                  ?>
+                  <div class="mb-3">
+                    <label for="no_kamar" class="form-label">No. Kamar</label>
+                    <input type="text" class="form-control" id="no_kamar" name="no_kamar" value="<?php echo $no_kamar ?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
+                    <select class="form-select" name="status" id="status">
+                      <option value="">- Pilih -</option>
+                      <option value="Tanpa AC" <?php if ($status == "Tanpa AC") echo "selected" ?>>Tanpa AC</option>
+                      <option value="Dengan AC" <?php if ($status == "Dengan AC") echo "selected" ?>>Dengan AC</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="harga" class="form-label">Harga</label>
+                    <input type="text" class="form-control" id="harga" name="harga" value="<?php echo $harga ?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" name="status" id="status">
+                      <option value="">- Pilih -</option>
+                      <option value="Kosong" <?php if ($status == "Kosong") echo "selected" ?>>Kosong</option>
+                      <option value="Dihuni" <?php if ($status == "Dihuni") echo "selected" ?>>Dihuni</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-          <div class="mb-3 row">
-            <label for="tipe_kamar" class="col-sm-2 col-form-label">tipe_kamar</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="tipe_kamar" name="tipe_kamar" value="<?php echo $tipe_kamar ?>">
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="harga" class="col-sm-2 col-form-label">harga</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="harga" name="harga" value="<?php echo $harga ?>">
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="status" class="col-sm-2 col-form-label">status</label>
-            <div class="col-sm-10">
-              <select class="form-control" name="status" id="status">
-                <option value="">- Pilih -</option>
-                <option value="Kosong" <?php if ($status == "Kosong") echo "selected" ?>>Kosong</option>
-                <option value="Dihuni" <?php if ($status == "Dihuni") echo "selected" ?>>Dihuni</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-12">
-            <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
-          </div>
-        </form>
-      </div> 
+        </div>
+      </div>
     </div>
+  </div>
+</body>
 
     <div class="card">
       <div class="card-header text-white bg-secondary">

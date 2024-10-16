@@ -159,7 +159,7 @@ if (isset($_POST['simpan'])) {
         </ul>
     </nav>
   </div>
-  
+
   <div class="container mx-auto">
     <div class="card">
       <div class="card-header">Create / Edit Data Kamar</div>
@@ -206,8 +206,8 @@ if (isset($_POST['simpan'])) {
                     <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
                     <select class="form-select" name="status" id="status">
                       <option value="">- Pilih -</option>
-                      <option value="Tanpa AC" <?php if ($status == "Tanpa AC") echo "selected" ?>>Tanpa AC</option>
-                      <option value="Dengan AC" <?php if ($status == "Dengan AC") echo "selected" ?>>Dengan AC</option>
+                      <option value="Tanpa AC" <?php if ($tipe_kamar == "Tanpa AC") echo "selected" ?>>Tanpa AC</option>
+                      <option value="Dengan AC" <?php if ($tipe_kamar == "Dengan AC") echo "selected" ?>>Dengan AC</option>
                     </select>
                   </div>
                   <div class="mb-3">

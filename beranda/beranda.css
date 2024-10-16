@@ -20,7 +20,7 @@ nav {
   z-index: 1000;
 }
 
-/*kiri : logo dan koskit */
+/*kiri : profil dan koskit */
 .nav-left{
   display: flex;
   align-items: center;
@@ -34,11 +34,11 @@ nav {
   align-items: center;
 }
 
-.logo{
-  width: 40px;
-  height: 40px;
+.profil{
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 /* kotak pencarian */

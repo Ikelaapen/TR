@@ -204,7 +204,7 @@ if (isset($_POST['simpan'])) {
                   </div>
                   <div class="mb-3">
                     <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
-                    <select class="form-select" name="status" id="status">
+                    <select class="form-select" name="tipe_kamar" id="tipe_kamar">
                       <option value="">- Pilih -</option>
                       <option value="Tanpa AC" <?php if ($tipe_kamar == "Tanpa AC") echo "selected" ?>>Tanpa AC</option>
                       <option value="Dengan AC" <?php if ($tipe_kamar == "Dengan AC") echo "selected" ?>>Dengan AC</option>

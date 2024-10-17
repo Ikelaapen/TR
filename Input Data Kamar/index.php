@@ -254,7 +254,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  padding-top: 70px; /* Ensure content isn't hidden behind navbar */
+  padding-top: 80px; /* Ensure content isn't hidden behind navbar */
 }
 
 nav {

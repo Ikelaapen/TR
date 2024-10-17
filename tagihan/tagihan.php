@@ -257,7 +257,7 @@ form input[type="text"] {
 <body>
 <div class="container mx-auto">
     <div class="card">
-      <div class="card-header">Create / Edit Data Tagihan</div>
+      <div class="card-header">Create/Edit Data Tagihan</div>
       <div class="card-body">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
           Tambah Tagihan
@@ -395,7 +395,8 @@ form input[type="text"] {
                             <a href="your_page.php?op=delete&no=<?php echo $id_penghuni; ?>" class="btn-delete" onclick="return confirm('Yakin mau delete data?')">Delete</a>
                         </td>
                     </tr>
-                <?php } ?>
+                <?php 
+              } ?>
             </tbody>
         </table>
     </div>

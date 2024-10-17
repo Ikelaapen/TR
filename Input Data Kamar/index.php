@@ -125,6 +125,124 @@ if (isset($_POST['simpan'])) {
     tr:hover {
       background-color: #F5F5F5; 
     }
+
+    /* Awal CSS Navbar */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding-top: 100px; /* Ensure content isn't hidden behind navbar */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid gray;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/*kiri : profil dan koskit */
+.nav-left{
+  display: flex;
+  align-items: center;
+}
+.nav-left h1 a{
+  text-decoration:none;
+  color: #3CB371;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+    .profil{
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    /* kotak pencarian */
+.nav-center{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav input[type='text'] {
+  padding: 10px 15px;
+  border: none;
+  font-size: 16px;
+  width: 200px;
+  border-radius: 25px 0 0 25px;
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  color: #333;
+  border-radius: 0 25px 25px 0;
+}
+
+/* menu navigasi */
+.nav-right ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-right ul li {
+  margin-left: 20px;
+}
+
+.nav-right ul li a {
+  text-decoration: none;
+  color: #6c757d;
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-right ul li a:hover {
+  color: #32de8a;
+}
+
+.nav-right ul li a.active {
+  color: #32de8a;
+  border-bottom: 2px solid #32de8a;
+}
+
+/* Akhir CSS Navbar */
+
+/* Awal CSS Body */
+/* Jumbotron Section */
+.jumbotron {
+  padding-top: 15rem;
+  background-color: #3CB371;
+  color: white;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.col-sm {
+  color: #32de8a;
+}
+
+.jumbotron1 {
+  background-color: #c1c1c1;
+}
   </style>
 </head>
 
@@ -258,7 +376,7 @@ nav button {
         </ul>
     </nav>
   </div>
-
+  
   <div class="container mx-auto">
     <div class="card">
       <div class="card-header">Create / Edit Data Kamar</div>
@@ -303,10 +421,10 @@ nav button {
                   </div>
                   <div class="mb-3">
                     <label for="tipe_kamar" class="form-label">Tipe Kamar</label>
-                    <select class="form-select" name="tipe_kamar" id="tipe_kamar">
+                    <select class="form-select" name="status" id="status">
                       <option value="">- Pilih -</option>
-                      <option value="Tanpa AC" <?php if ($tipe_kamar == "Tanpa AC") echo "selected" ?>>Tanpa AC</option>
-                      <option value="Dengan AC" <?php if ($tipe_kamar == "Dengan AC") echo "selected" ?>>Dengan AC</option>
+                      <option value="Tanpa AC" <?php if ($status == "Tanpa AC") echo "selected" ?>>Tanpa AC</option>
+                      <option value="Dengan AC" <?php if ($status == "Dengan AC") echo "selected" ?>>Dengan AC</option>
                     </select>
                   </div>
                   <div class="mb-3">

@@ -27,7 +27,7 @@ if (isset($_GET['op'])) {
 
 if ($op == 'delete') {
     $no = $_GET['no'];
-    $sql1 = "DELETE FROM tagihan WHERE no = '$no'";
+    $sql1 = "DELETE FROM tagihan WHERE no = '$id_penghuni'";
     $q1 = mysqli_query($koneksi, $sql1);
     if ($q1) {
         $sukses = "Berhasil Hapus Data Tagihan";
@@ -38,7 +38,7 @@ if ($op == 'delete') {
 
 if ($op == 'edit') {
     $no = $_GET['no'];
-    $sql1 = "SELECT * FROM tagihan WHERE no = '$no'";
+    $sql1 = "SELECT * FROM tagihan WHERE no = '$id_penghuni'";
     $q1 = mysqli_query($koneksi, $sql1);
     $r1 = mysqli_fetch_array($q1);
     $id_penghuni = $r1['id_penghuni'];
@@ -60,7 +60,7 @@ if (isset($_POST['simpan'])) {
 
     if ($id_penghuni && $nama && $tagihan && $status) {
         if ($op == 'edit') {
-            $sql1 = "UPDATE tagihan SET id_penghuni = '$id_penghuni', nama = '$nama', tagihan = '$tagihan', status = '$status' WHERE no = '$no'";
+            $sql1 = "UPDATE tagihan SET id_penghuni = '$id_penghuni', nama = '$nama', tagihan = '$tagihan', status = '$status' WHERE no = '$id_penghuni'";
             $q1 = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses = "Data berhasil diupdate";
@@ -82,7 +82,7 @@ if (isset($_POST['simpan'])) {
 }
 
 // Retrieve data for display in the table
-$sql2 = "SELECT * FROM tagihan ORDER BY no DESC";
+$sql2 = "SELECT * FROM tagihan ORDER BY id_penghuni DESC";
 $q2 = mysqli_query($koneksi, $sql2);
 ?>
 
@@ -92,9 +92,51 @@ $q2 = mysqli_query($koneksi, $sql2);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Tagihan</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="your-custom-styles.css">
     <style>
-        body {
+
+.mx-auto {
+      max-width: 800px; 
+      margin: 0 auto;
+    }
+
+    
+    .card {
+      margin-top: 20px; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 5px;
+    }
+
+    
+    .card-header {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 15px; 
+      background-color: #f8f9fa; 
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .table {
+      margin-bottom: 0; 
+      border-collapse: collapse; 
+    }
+
+    th, td {
+      padding: 10px 15px; 
+      border: 1px solid #e0e0e0; /
+    }
+
+    th {
+      background-color: #f0f0f0; 
+    }
+
+   
+    tr:hover {
+      background-color: #F5F5F5; 
+    }
+
+body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -208,38 +250,78 @@ form input[type="text"] {
 </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Data Tagihan Penghuni</h1>
+<div class="container mx-auto">
+    <div class="card">
+      <div class="card-header">Create / Edit Data Tagihan</div>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
+          Tambah Tagihan
+        </button>
 
-        <!-- Notification for success or error -->
-        <?php if ($sukses) { ?>
-            <div class="alert-success"><?php echo $sukses; ?></div>
-        <?php } ?>
-        <?php if ($error) { ?>
-            <div class="alert-error"><?php echo $error; ?></div>
-        <?php } ?>
+        <div class="modal fade" id="modalTambahTagihan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Tagihan Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST">
+                  <?php
+                  if ($error) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?php echo $error ?>
+                    </div>
 
-        <div class="form-container">
-            <form action="" method="POST">
-                <label for="id_penghuni">ID Penghuni</label><br>
-                <input type="text" name="id_penghuni" value="<?php echo $id_penghuni; ?>"><br>
-
-                <label for="nama">Nama</label><br>
-                <input type="text" name="nama" value="<?php echo $nama; ?>"><br>
-
-                <label for="tagihan">Tagihan</label><br>
-                <input type="text" name="tagihan" value="<?php echo $tagihan; ?>"><br>
-
-                <label for="status">Status</label><br>
-                <input type="text" name="status" value="<?php echo $status; ?>"><br><br>
-
-                <input type="submit" name="simpan" value="Simpan Data" class="btn-save">
-            </form>
+                  <?php
+                  header("refresh:5;url=index.php");
+                  }
+                  ?>
+                  <?php
+                  if ($sukses) {
+                  ?>
+                    <div class="alert alert-success" role="alert">
+                      <?php echo $sukses ?>
+                    </div>
+                  <?php
+                  header("refresh:5;url=index.php");
+                  }
+                  ?>
+                  <div class="mb-3">
+                    <label for="id_penghuni" class="form-label">Id_Penghuni</label>
+                    <input type="text" class="form-control" id="id_penghuni" name="id_penghuni" value="<?php echo $id_penghuni?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="tagihan" class="form-label">Tagihan</label>
+                    <input type="text" class="form-control" id="tagihan" name="tagihan" value="<?php echo $tagihan ?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" name="status" id="status">
+                      <option value="">- Pilih -</option>
+                      <option value="Sudah Bayar" <?php if ($status == "Sudah Bayar") echo "selected" ?>>Sudah Bayar</option>
+                      <option value="Belum Bayar" <?php if ($status == "Belum Bayar") echo "selected" ?>>Belum Bayar</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-
+      </div>
+    </div>
+  </div>
+</body>
+       
         <h2>Daftar Tagihan</h2>
-        <a href="your_page.php?op=create" class="btn-add">Tambah Tagihan</a>
-
         <table class="data-table">
             <thead>
                 <tr>
@@ -255,7 +337,6 @@ form input[type="text"] {
                 <?php
                 $urut = 1;
                 while ($r2 = mysqli_fetch_array($q2)) {
-                    $no = $r2['no'];
                     $id_penghuni = $r2['id_penghuni'];
                     $nama = $r2['nama'];
                     $tagihan = $r2['tagihan'];
@@ -276,5 +357,6 @@ form input[type="text"] {
             </tbody>
         </table>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>

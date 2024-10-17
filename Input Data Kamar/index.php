@@ -78,7 +78,7 @@ if (isset($_POST['simpan'])) {
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
 
   <title>Data Kamar</title>
 
@@ -247,6 +247,105 @@ nav button {
 </head>
 
 <body>
+  <style>
+/* Awal CSS Navbar */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding-top: 70px; /* Ensure content isn't hidden behind navbar */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid gray;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/*kiri : profil dan koskit */
+.nav-left{
+  display: flex;
+  align-items: center;
+}
+.nav-left h1 a{
+  text-decoration:none;
+  color: #3CB371;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.profil{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+/* kotak pencarian */
+.nav-center{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav input[type='text'] {
+  padding: 10px 15px;
+  border: none;
+  font-size: 16px;
+  width: 200px;
+  border-radius: 25px 0 0 25px;
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  color: #333;
+  border-radius: 0 25px 25px 0;
+}
+
+/* menu navigasi */
+.nav-right ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-right ul li {
+  margin-left: 20px;
+}
+
+.nav-right ul li a {
+  text-decoration: none;
+  color: #6c757d;
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-right ul li a:hover {
+  color: #32de8a;
+}
+
+.nav-right ul li a.active {
+  color: #32de8a;
+  border-bottom: 2px solid #32de8a;
+}
+
+/* Akhir CSS Navbar */
+  </style>
       <!-- Navigasi -->
       <nav>
       <div class="nav-left">
@@ -362,10 +461,10 @@ nav button {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">no_kamar</th>
-              <th scope="col">tipe_kamar</th>
-              <th scope="col">harga</th>
-              <th scope="col">status</th>
+              <th scope="col">No Kamar</th>
+              <th scope="col">Tipe Kamar</th>
+              <th scope="col">Harga</th>
+              <th scope="col">Status</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -373,7 +472,7 @@ nav button {
             <?php
             $sql2 = "select * from kost order by id desc";
             $q2 = mysqli_query($koneksi, $sql2);
-            $urut = 1;
+            $urut = 1;  
             while ($r2 = mysqli_fetch_array($q2)) {
               $id = $r2['id'];
               $no_kamar = $r2['no_kamar'];

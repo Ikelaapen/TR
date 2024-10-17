@@ -14,6 +14,8 @@ if (!$koneksi) {
 $id_penghuni = "";
 $nama = "";
 $tagihan = "";
+$bulan = "";
+$tahun = "";
 $status = "";
 $sukses = "";
 $error = "";
@@ -37,13 +39,14 @@ if ($op == 'delete') {
 }
 
 if ($op == 'edit') {
-    $no = $_GET['no'];
     $sql1 = "SELECT * FROM tagihan WHERE no = '$id_penghuni'";
     $q1 = mysqli_query($koneksi, $sql1);
     $r1 = mysqli_fetch_array($q1);
     $id_penghuni = $r1['id_penghuni'];
     $nama = $r1['nama'];
     $tagihan = $r1['tagihan'];
+    $bulan =$r1['bulan'];
+    $tahun = $r1 ['tahun'];
     $status = $r1['status'];
 
     if ($id_penghuni == '') {
@@ -55,10 +58,12 @@ if ($op == 'edit') {
 if (isset($_POST['simpan'])) {
     $id_penghuni = $_POST['id_penghuni'];
     $nama = $_POST['nama'];
+    $bulan = $_POST['bulan'];
+    $tahun = $_POST['tahun'];
     $tagihan = $_POST['tagihan'];
-    $status = $_POST['status'];
+    $status =  $_POST['status'] ;
 
-    if ($id_penghuni && $nama && $tagihan && $status) {
+    if ($id_penghuni && $nama && $tagihan && $bulan && $tahun && $status) {
         if ($op == 'edit') {
             $sql1 = "UPDATE tagihan SET id_penghuni = '$id_penghuni', nama = '$nama', tagihan = '$tagihan', status = '$status' WHERE no = '$id_penghuni'";
             $q1 = mysqli_query($koneksi, $sql1);
@@ -301,12 +306,43 @@ form input[type="text"] {
                     <input type="text" class="form-control" id="tagihan" name="tagihan" value="<?php echo $tagihan ?>">
                   </div>
                   <div class="mb-3">
+                    <label for="bulan" class="form-label">Bulan</label>
+                    <select class="form-select" name="bulan" id="bulan" value="<?php echo $bulan ?>">>
+                    <option value=""> Pilih Bulan</option>
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                    <option value="Maret">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mei">Mei</option>
+                    <option value="Juni">Juni</option>
+                    <option value="Juli">Juli</option>
+                    <option value="Agustus">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="Oktober">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="Desember">Desember</option>
+                </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="tahun" class="form-label">Tahun</label>
+                    <select class="form-select" name="tahun" id="tahun" value="<?php echo $tahun ?>">>
+                    <option value="" selected>Pilih Tahun</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                   </div>
+                  <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
-                    <select class="form-select" name="status" id="status">
-                      <option value="">- Pilih -</option>
-                      <option value="Sudah Bayar" <?php if ($status == "Sudah Bayar") echo "selected" ?>>Sudah Bayar</option>
-                      <option value="Belum Bayar" <?php if ($status == "Belum Bayar") echo "selected" ?>>Belum Bayar</option>
+                    <select class="form-select" name="status" id="status" value="<?php echo $status ?>">
+                    <option value="" selected> Pilih </option>
+                    <option value="Sudah Bayar">Sudah Bayar</option>
+                    <option value="Belum Bayar">Belum Bayar</option>
                     </select>
+
                   </div>
                   <div class="col-12">
                     <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
@@ -329,6 +365,8 @@ form input[type="text"] {
                     <th>ID Penghuni</th>
                     <th>Nama</th>
                     <th>Tagihan</th>
+                    <th>Bulan</th>
+                    <th>Tahun</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -340,6 +378,8 @@ form input[type="text"] {
                     $id_penghuni = $r2['id_penghuni'];
                     $nama = $r2['nama'];
                     $tagihan = $r2['tagihan'];
+                    $bulan = $r2['bulan'];
+                    $tahun = $r2 ['tahun'];
                     $status = $r2['status'];
                 ?>
                     <tr>
@@ -347,10 +387,12 @@ form input[type="text"] {
                         <td><?php echo $id_penghuni; ?></td>
                         <td><?php echo $nama; ?></td>
                         <td><?php echo $tagihan; ?></td>
+                        <td><?php echo $bulan; ?></td>
+                        <td><?php echo $tahun; ?></td>
                         <td><?php echo $status; ?></td>
                         <td>
-                            <a href="your_page.php?op=edit&no=<?php echo $no; ?>" class="btn-edit">Edit</a>
-                            <a href="your_page.php?op=delete&no=<?php echo $no; ?>" class="btn-delete" onclick="return confirm('Yakin mau delete data?')">Delete</a>
+                            <a href="your_page.php?op=edit&no=<?php echo $id_penghuni; ?>" class="btn-edit">Edit</a>
+                            <a href="your_page.php?op=delete&no=<?php echo $id_penghuni; ?>" class="btn-delete" onclick="return confirm('Yakin mau delete data?')">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>

@@ -1,6 +1,7 @@
 <?php
   include 'koneksibayar.php';
-
+    
+  // Ambil data dari database
     $query = "SELECT * FROM tagihan WHERE status = 'Lunas'";
     $result = mysqli_query($conn, $query);
 ?>
@@ -69,19 +70,22 @@
               </thead>
               <tbody>
               <?php
-                if (mysqli_num_rows($result) > 0) {
-                    $no = 1;
-                     while($row = mysqli_fetch_assoc($result)) {
+        // Cek apakah ada data yang diambil
+        if (mysqli_num_rows($result) > 0) {
+            $no = 1;
+            // Tampilkan data satu per satu ke dalam baris tabel
+            while($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $no++ . "</td>";  
-                echo "<td>" . $row['id_penghuni'] . "</td>";  
-                echo "<td>" . $row['nama'] . "</td>";  
-                echo "<td>Rp " . number_format($row['tagihan'], 2, ',', '.') . "</td>";  
-                echo "<td>" . $row['status'] . "</td>";  
-                echo "<td><a href='struk.php?id=" . $row['id_penghuni'] . "' class='btn btn-primary'>Cetak Struk</a></td>";  
+                echo "<td>" . $no++ . "</td>";  // Kolom nomor
+                echo "<td>" . $row['id_penghuni'] . "</td>";  // Kolom ID Penghuni
+                echo "<td>" . $row['nama'] . "</td>";  // Kolom Nama
+                echo "<td>Rp " . number_format($row['tagihan'], 2, ',', '.') . "</td>";  // Kolom Tagihan
+                echo "<td>" . $row['status'] . "</td>";  // Kolom Status
+                echo "<td><a href='struk.php?id=" . $row['id_penghuni'] . "' class='btn btn-primary'>Cetak Struk</a></td>";  // Kolom Aksi dengan tombol cetak
                 echo "</tr>";
             }
         } else {
+            // Jika tidak ada data, tampilkan pesan
             echo "<tr><td colspan='6' align='center'>Tidak ada data</td></tr>";
         }
         ?>

@@ -42,11 +42,11 @@
         <!-- Menu Navigasi -->
          <div class="nav-right">
         <ul id="menu">
-            <li class="active"><a href="#">Beranda</a></li>
-            <li><a href="#">Data Kamar</a></li>
-            <li><a href="#">Data Penghuni</a></li>
-            <li><a href="#">Data Tagihan</a></li>
-            <li><a href="#">Pembayaran Lunas</a></li>
+            <li class="active"><a href="beranda.php">Beranda</a></li>
+            <li><a href="kamar.php">Data Kamar</a></li>
+            <li><a href="dathuni.php">Data Penghuni</a></li>
+            <li><a href="tagihan.php">Data Tagihan</a></li>
+            <li><a href="pelunasan.php">Pembayaran Lunas</a></li>
         </ul>
     </nav>
   </div>

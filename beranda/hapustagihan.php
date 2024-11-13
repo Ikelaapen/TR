@@ -1,17 +1,17 @@
 <?php
-$conn = new mysqli("localhost:8111", "root", "", "data_penghuni");
+$conn = new mysqli("localhost", "root", "", "tagihan");
 
 if ($conn->connect_error){
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-$idpenghuni = $_GET['idpenghuni'];
+$id_penghuni = $_GET['id_penghuni'];
 
 
-$sql = "DELETE FROM penghuni WHERE idpenghuni='$idpenghuni'";
+$sql = "DELETE FROM tagihan WHERE id_penghuni='$id_penghuni'";
 
 if ($conn->query($sql) === TRUE){
-    header("Location: dathuni.php");
+    header("Location: tagihan.php");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

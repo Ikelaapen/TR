@@ -7,7 +7,7 @@ if ($conn->connect_error){
 
 $id_penghuni = $_POST['id_penghuni'] ?? null;
 $nama = $_POST['nama'] ?? null;
-$tglbayar = $_POST['tglbayar'] ?? null;
+$tglbayar = date("Y-m-d", strtotime($_POST['tglbayar']));
 $tagihan = $_POST['tagihan'] ?? null;
 $status = $_POST['status'] ?? null;
 $catatan = $_POST['catatan'] ?? null;

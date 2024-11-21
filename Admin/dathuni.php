@@ -40,14 +40,9 @@
                     <li class="nav-item"><a class="nav-link" href="pelunasan.php">Pelunasan</a></li>
                 </ul>
                 
-                <!-- Profile Icon with Dropdown Menu -->
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> Pengguna
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                    </ul>
+                              <!-- logout -->
+                              <div class="logout-container">
+                    <a href="menu login.php" class="nav-link logout-btn">Logout</a>
                 </div>
             </div>
         </div>

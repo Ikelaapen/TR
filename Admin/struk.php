@@ -1,33 +1,28 @@
 <?php
-include 'koneksibayar.php'; // Koneksi database
+include 'koneksibayar.php';
 
-// Aktifkan error reporting
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Ambil id_penghuni dari URL
+$id_penghuni = $_GET['id_penghuni'] ?? null;
 
-// Validasi parameter ID
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = intval($_GET['id']);
-} else {
-    echo "ID tidak valid.";
-    exit;
-}
-
-// Query untuk mengambil data
-$query = "SELECT * FROM pelunasan WHERE idPenghuni = $id";
-$result = $conn->query($query);
-
-if (!$result) {
-    echo "Error pada query: " . $conn->error;
-    exit;
-}
-
-if ($result->num_rows > 0) {
+if ($id_penghuni) {
+    // Ambil data dari tabel pelunasan
+    $query = "SELECT * FROM pelunasan WHERE id_penghuni = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $id_penghuni);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $data = $result->fetch_assoc();
+
+    if ($data) {
+        // Pastikan tagihan ada dan dalam format yang tepat
+        $tagihan = isset($data['tagihan']) ? (float)$data['tagihan'] : 0.00; // Ensure it's numeric
+        // Format tagihan dengan pemisah ribuan dan dua digit desimal
+        $tagihan_formatted = number_format($tagihan, 0, ',', '.'); // Format to "Rp 1.000.000"
+    } else {
+        echo "Data tidak ditemukan.";
+    }
 } else {
-    echo "Data untuk ID Penghuni $id tidak ditemukan.";
-    exit;
+    echo "ID Penghuni tidak valid.";
 }
 ?>
 
@@ -64,29 +59,22 @@ if ($result->num_rows > 0) {
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID Penghuni</th>
+                    <th>Id Penghuni</th>
                     <th>Nama</th>
+                    <th>Tgl Bayar</th>
                     <th>Tagihan</th>
                     <th>Status</th>
-                    <th>Tgl Bayar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><?php echo $data['idPenghuni']; ?></td>
-                    <td><?php echo $data['nama']; ?></td>
-                    <td>
-                        <?php 
-                        if (!empty($data['tglBayar']) && strtotime($data['tglBayar'])) {
-                            echo date('d-M-Y', strtotime($data['tglBayar']));
-                        } else {
-                            echo "Tanggal tidak valid.";
-                        }
-                        ?>
-                    </td>
-                    <td>Rp <?php echo number_format($data['tagihan'], 2, ',', '.'); ?></td>
-                    <td><?php echo $data['status']; ?></td>
-                    <td><?php echo $data['catatan']; ?></td>
+                    <td><?php echo str_pad($data['id_penghuni'], 3, "0", STR_PAD_LEFT); ?></td>
+                    <td><?php echo htmlspecialchars($data['nama']); ?></td>
+                    <td><?php echo (!empty($data['tglbayar']) && $data['tglbayar'] != '0000-00-00') 
+    ? date("d-m-Y", strtotime($data['tglbayar'])) 
+    : 'Tidak Ada'; ?></td>
+                    <td>Rp <?php echo $tagihan_formatted; ?></td>
+                    <td><?php echo htmlspecialchars($data['status']); ?></td>
                     
                 </tr>
             </tbody>

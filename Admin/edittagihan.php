@@ -59,7 +59,7 @@ $conn->close();
                     </div>
                 <div class="mb-3">
                     <label for="catatan" class="form-label">Catatan</label>
-                    <input type="text" class="form-control" id="catatan" name="catatan" value="<?php echo $tagihan['catatan']; ?>" required>
+                    <input type="text" class="form-control" id="catatan" name="catatan" value="<?php echo $tagihan['catatan']; ?>">
                 </div> 
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='tagihan.php'">Batal</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>

@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "tagihan");
+$koneksi = mysqli_connect("localhost", "root", "", "admin");
 if (!$koneksi) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }

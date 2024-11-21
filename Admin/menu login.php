@@ -28,8 +28,6 @@
 
                 <input id="submit-btn" type="submit" value="LOGIN" />
             </form>
-             <!-- Tautan User di bawah form -->
-        <a href="menu login user.php" style="display: block; margin-top: 15px; text-align: center; text-decoration: underline;">User</a>
         </div>
     </div>
 </body>

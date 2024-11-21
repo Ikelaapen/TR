@@ -1,74 +1,10 @@
 <?php
-include 'koneksibayar.php';
-
-// Ambil data dari tabel pelunasan dengan tagihan yang valid
-$query = "SELECT pelunasan.*, IFNULL(tagihan.tagihan, 0) AS tagihan 
-          FROM pelunasan 
-          JOIN tagihan ON pelunasan.id_penghuni = tagihan.id_penghuni
-          WHERE pelunasan.status = 'Lunas'
-          ORDER BY pelunasan.id_penghuni ASC";
-$result = mysqli_query($conn, $query);
-
-if (!$result) {
-    die("Error: " . mysqli_error($conn));
-}
-
-
-while ($row = mysqli_fetch_assoc($result)) {
-    // Validasi data yang diambil
-    if (!isset($row['id_penghuni']) || empty($row['id_penghuni'])) {
-        continue; // Lewati jika id_penghuni tidak valid
-    }
-
-    $id_penghuni = $row['id_penghuni'];
-
-    // Cek apakah data sudah ada di tabel pelunasan
-    $check_query = "SELECT COUNT(*) AS count FROM pelunasan WHERE id_penghuni = ?";
-    $stmt = $conn->prepare($check_query);
-    $stmt->bind_param("s", $id_penghuni);
-    $stmt->execute();
-    $check_result = $stmt->get_result();
-    $check_data = $check_result->fetch_assoc();
-
-    // Jika belum ada, tambahkan ke pelunasan
-    if ($check_data['count'] == 0) {
-        $tglbayar = (!empty($row['tglbayar']) && $row['tglbayar'] != '0000-00-00') 
-            ? date("Y-m-d", strtotime($row['tglbayar'])) 
-            : null;
-
-        // Validasi semua kolom sebelum dimasukkan
-        $nama = $row['nama'] ?? 'Tidak Ada Nama';
-        $tagihan = isset($row['tagihan']) && is_numeric($row['tagihan']) ? $row['tagihan'] : 0; 
-        $status = $row['status'] ?? 'Tidak Diketahui';
-        $aksi = ''; 
-
-        $insert_query = "INSERT INTO pelunasan (id_penghuni, nama, tglbayar, tagihan, status, aksi) 
-                         VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-
-        $stmt->bind_param("ssssss", $id_penghuni, $nama, $tglbayar, $tagihan, $status, $aksi);
-
-        if (!$stmt->execute()) {
-            die("Gagal menyisipkan data: " . $stmt->error);
-        }
-    }
-}
-
-// Ambil data untuk ditampilkan
-$pelunasan_query = "SELECT p.id_penghuni, p.nama, p.tglbayar, 
-                           IFNULL(t.tagihan, 0) AS tagihan, p.status
-                    FROM pelunasan p
-                    LEFT JOIN tagihan t ON p.id_penghuni = t.id_penghuni
-                    ORDER BY p.id_penghuni ASC";
-
-$pelunasan_result = mysqli_query($conn, $pelunasan_query);
-
-if (!$pelunasan_result) {
-die("Gagal mengambil data: " . mysqli_error($conn));
-}
-
+  include 'koneksibayar.php';
+    
+  // Ambil data dari database
+    $query = "SELECT * FROM tagihan WHERE status = 'Lunas'";
+    $result = mysqli_query($conn, $query);
 ?>
-
 
   <!DOCTYPE html>
   <html lang="id">
@@ -111,14 +47,14 @@ die("Gagal mengambil data: " . mysqli_error($conn));
                 <!-- Menu Navigasi -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active"><a class="nav-link" href="beranda.php">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="kamar2.php">Data Kamar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kamar.php">Data Kamar</a></li>
                     <li class="nav-item"><a class="nav-link" href="dathuni.php">Data Penghuni</a></li>
                     <li class="nav-item"><a class="nav-link" href="tagihan.php">Data Tagihan</a></li>
                     <li class="nav-item"><a class="nav-link" href="pelunasan.php">Pelunasan</a></li>
                 </ul>
                 
-                              <!-- logout -->
-                              <div class="logout-container">
+                 <!-- logout -->
+                 <div class="logout-container">
                     <a href="menu login.php" class="nav-link logout-btn">Logout</a>
                 </div>
             </div>
@@ -129,42 +65,55 @@ die("Gagal mengambil data: " . mysqli_error($conn));
       <div class="container mt-5">
           <h2 class="text-center">Tagihan Pelunasan</h2>
           <table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Id Penghuni</th>
-            <th>Nama</th>
-            <th>TglBayar</th>
-            <th>Tagihan</th>
-            <th>Status</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-    //nomor urut
+              <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>ID Penghuni</th>
+                      <th>Nama</th>
+                      <th>TglBayar</th>
+                      <th>Tagihan</th>
+                      <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+              <?php
+// Loop data dari tabel tagihan
+if (mysqli_num_rows($result) > 0) {
     $no = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
 
-    // Loop untuk menampilkan data pelunasan
-    while ($row = mysqli_fetch_assoc($pelunasan_result)) {
+        // Cek dan format tagihan
+        if (!empty($row['tagihan']) && is_numeric($row['tagihan'])) {
+            $tagihan = number_format($row['tagihan'], 2, ',', '.'); // Format sebagai angka
+        } else {
+            $tagihan = "0,00"; // Atau bisa juga 0 jika tidak valid
+        }
+
         echo "<tr>";
-        echo "<td>" . $no++. "</td>";
+        echo "<td>" . $no++ . "</td>";
         echo "<td>" . str_pad($row['id_penghuni'], 3, "0", STR_PAD_LEFT) . "</td>";
-        echo "<td>" . htmlspecialchars($row['nama']) . "</td>";
-        echo "<td>" . (!empty($row['tglbayar']) ? date("d-m-Y", strtotime($row['tglbayar'])) : 'Tidak Ada') . "</td>";
-        $tagihan = preg_replace('/[^0-9]/', '', $row['tagihan']); // Hapus semua karakter selain angka
-echo "<td>Rp " . number_format((float)$tagihan, 0, ',', '.') . "</td>";
-
-        echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-        echo "<td>
-                <a href='struk.php?id_penghuni=" . urlencode($row['id_penghuni']) . "' class='btn btn-primary btn-sm'>Cetak Struk</a>
-              </td>";
+        echo "<td>" . $row['nama'] . "</td>";
+        echo "<td>" . date("d-m-Y", strtotime($row['tglbayar'])) . "</td>";
+        echo "<td>" . $row['tagihan'] . "</td>";
+        echo "<td>" . $row['status'] . "</td>";
+        echo "<td><a href='struk.php?id=" . $row['id_penghuni'] . "' class='btn btn-primary'>Cetak Struk</a></td>";
         echo "</tr>";
-    }
-    ?>
-    </tbody>
-</table>
 
+        // Masukkan data ke tabel pelunasan
+        $insert_query = $conn->prepare("INSERT INTO pelunasan (id_penghuni, nama, tglbayar, tagihan, status) 
+                                VALUES (?, ?, ?, ?, ?)");
+$insert_query->bind_param("issds", $row['id_penghuni'], $row['nama'], $row['tglbayar'], $row['tagihan'], $row['status']);
+if (!$insert_query->execute()) {
+    echo "<script>console.error('Error: " . $insert_query->error . "');</script>";
+}
+    }
+}else {
+    echo "<script>console.log('Data berhasil disimpan');</script>";
+}
+?>
+
+              </tbody>
+          </table>
       </div>
       <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -186,17 +186,12 @@ footer {
                 <!-- Menu Navigasi -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active"><a class="nav-link" href="beranda.php">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tagihan.php">Data Tagihan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tagihanuser.php">Data Tagihan</a></li>
                 </ul>
                 
-                <!-- Profile Icon with Dropdown Menu -->
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> Pengguna
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item" href="menu login.php">Logout</a></li>
-                    </ul>
+                 <!-- logout -->
+                 <div class="logout-container">
+                    <a href="loginuser.php" class="nav-link logout-btn">Logout</a>
                 </div>
             </div>
         </div>

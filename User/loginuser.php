@@ -3,7 +3,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "user";
+$dbname = "admin";
 
 // Koneksi ke database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $query = "SELECT * FROM users WHERE username = ? AND password = ?";
+    $query = "SELECT * FROM loginuser WHERE username = ? AND password = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Proses logout
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: login.php");
+    header("Location: loginuser.php");
     exit;
 }
 ?>

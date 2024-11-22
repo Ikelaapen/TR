@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header("Location: login.php");
+    header("Location: loginuser.php");
     exit;
 }
 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "user";
+$dbname = "admin";
 
 // Koneksi ke database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 
 $current_user = $_SESSION['username']; // Pastikan ini sesuai dengan kolom pada tabel tagihan
-$sql = "SELECT * FROM tagihan WHERE nama = ?";
+$sql = "SELECT * FROM tagihanuser WHERE nama = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $current_user);
 $stmt->execute();
@@ -211,17 +211,12 @@ footer {
                 <!-- Menu Navigasi -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active"><a class="nav-link" href="beranda.php">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tagihan.php">Data Tagihan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tagihanuser.php">Data Tagihan</a></li>
                 </ul>
                 
-                <!-- Profile Icon with Dropdown Menu -->
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> Pengguna
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                    </ul>
+                 <!-- logout -->
+                 <div class="logout-container">
+                    <a href="loginuser.php" class="nav-link logout-btn">Logout</a>
                 </div>
             </div>
         </div>

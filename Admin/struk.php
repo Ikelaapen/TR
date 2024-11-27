@@ -73,7 +73,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><?php echo $data['id_penghuni']; ?></td>
+                                <td><?php echo str_pad($data['id_penghuni'], 3, "0", STR_PAD_LEFT); ?></td>
                                 <td><?php echo $data['nama']; ?></td>
                                 <td>
                                     <?php 

@@ -47,7 +47,7 @@
                 <!-- Menu Navigasi -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active"><a class="nav-link" href="beranda.php">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="kamar.php">Data Kamar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kamar2.php">Data Kamar</a></li>
                     <li class="nav-item"><a class="nav-link" href="dathuni.php">Data Penghuni</a></li>
                     <li class="nav-item"><a class="nav-link" href="tagihan.php">Data Tagihan</a></li>
                     <li class="nav-item"><a class="nav-link" href="pelunasan.php">Pelunasan</a></li>

@@ -10,19 +10,19 @@ $username = "root";
 $password = "";
 $dbname = "admin";
 
-// Koneksi ke database
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-$current_user = $_SESSION['username']; // Pastikan ini sesuai dengan kolom pada tabel tagihan
-$sql = "SELECT * FROM tagihanuser WHERE nama = ?";
+$current_user = $_SESSION['username']; 
+$sql = "SELECT * FROM tagihan WHERE nama = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $current_user);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -38,6 +38,70 @@ $result = $stmt->get_result();
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigasi -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="beranda.php">
+                <h3>Kos Kit</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Menu Navigasi -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active"><a class="nav-link" href="beranda.php">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tagihanuser.php">Data Tagihan</a></li>
+                </ul>
+                
+                 <!-- logout -->
+                 <div class="logout-container">
+                    <a href="loginuser.php" class="nav-link logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+  
+    <div class="container my-5">
+        <h4 class="text-center mb-4">Data Tagihan Anda</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Tgl Bayar</th>
+                    <th>Tagihan</th>
+                    <th>Status</th>
+                    <th>Catatan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    $no = 1;
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $no++ . "</td>";
+                        echo "<td>" . $row['nama'] . "</td>";
+                        echo "<td>" . date("d-m-Y", strtotime($row['tglbayar'])) . "</td>";
+                        echo "<td>" . $row['tagihan'] . "</td>";
+                        echo "<td>" . $row['status'] . "</td>";
+                        echo "<td>" . $row['catatan'] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6' class='text-center'>Tidak ada data tagihan</td></tr>";
+                }
+                $stmt->close();
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+    </div>
+</body>
 
 <style>
   .custom-header {
@@ -50,7 +114,7 @@ body {
   margin: 0;
   padding: 20px 50px;
   box-sizing: border-box;
-  padding-top: 20px 50px; /* Ensures content isn't hidden behind navbar */
+  padding-top: 20px 50px; 
 }
 
 /* Navbar Styling */
@@ -194,70 +258,6 @@ footer {
     font-size: 18px;
   }
 }
+
 </style>
-</head>
-<body>
-<!-- Navigasi -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="beranda.php">
-                <h3>Kos Kit</h3>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Menu Navigasi -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active"><a class="nav-link" href="beranda.php">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tagihanuser.php">Data Tagihan</a></li>
-                </ul>
-                
-                 <!-- logout -->
-                 <div class="logout-container">
-                    <a href="loginuser.php" class="nav-link logout-btn">Logout</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-  
-    <div class="container my-5">
-        <h4 class="text-center mb-4">Data Tagihan Anda</h4>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Tgl Bayar</th>
-                    <th>Tagihan</th>
-                    <th>Status</th>
-                    <th>Catatan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    $no = 1;
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $no++ . "</td>";
-                        echo "<td>" . $row['nama'] . "</td>";
-                        echo "<td>" . date("d-m-Y", strtotime($row['tglbayar'])) . "</td>";
-                        echo "<td>" . $row['tagihan'] . "</td>";
-                        echo "<td>" . $row['status'] . "</td>";
-                        echo "<td>" . $row['catatan'] . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='6' class='text-center'>Tidak ada data tagihan</td></tr>";
-                }
-                $stmt->close();
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
-    </div>
-</body>
 </html>
-

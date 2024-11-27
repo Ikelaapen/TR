@@ -160,7 +160,7 @@ if (isset($_GET['logout'])) {
                 <div class="underline-title"></div>
             </div>
             <!-- Form login -->
-            <form action="login.php" method="post" class="form">
+            <form action="loginuser.php" method="post" class="form">
                 <label for="username" style="padding-top:13px">&nbsp;Username</label>
                 <input id="username" class="form-content" type="text" name="username" required />
                 <div class="form-border"></div>
